@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrightShine Cleaning Services</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; color: #0a2a66; }
+
+    header {
+      background: #0b3364;
+      color: white;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-icon {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .logo h1 { font-size: 20px; font-weight: 600; color: white; }
+    nav a {
+      color: rgba(255,255,255,0.85);
+      margin: 0 12px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: white; }
+
+    /* HERO */
+    .hero {
+  background: url("OIP (1).jfif") no-repeat center center/cover;
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+}
+
+/* Dark blue overlay */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 40, 80, 0.7);
+  backdrop-filter: blur(2px);
+}
+
+/* Keep text above overlay */
+.hero * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Button styling */
+.btn {
+  background: white;
+  color: #3d70b2;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  margin-top: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #f0f0f0;
+} 
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 20px;
+      padding: 5px 16px;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    .hero h2 { font-size: 46px; font-weight: 700; margin-bottom: 14px; line-height: 1.2; }
+    .hero p { font-size: 17px; opacity: 0.85; margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: white; color: #0b3364;
+      padding: 13px 30px; border: none; border-radius: 8px;
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .btn-outline {
+      background: transparent; color: white;
+      padding: 13px 30px; border: 1.5px solid rgba(255,255,255,0.5);
+      border-radius: 8px; font-size: 15px; cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+    /* STATS */
+    .stats-bar {
+      background: white;
+      display: flex;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .stat {
+      padding: 22px 44px;
+      text-align: center;
+      border-right: 1px solid #f0f0f0;
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-size: 26px; font-weight: 700; color: #0b3364; }
+    .stat-label { font-size: 12px; color: #888; margin-top: 3px; }
+
+    /* SECTIONS */
+    .section { padding: 70px 20px; text-align: center; }
+    .section-label {
+      font-size: 12px; font-weight: 600; color: #1a5ea8;
+      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .section h2 { font-size: 32px; font-weight: 700; color: #0a2a66; margin-bottom: 12px; }
+    .section-sub {
+      font-size: 16px; color: #666;
+      max-width: 500px; margin: 0 auto 44px;
+      line-height: 1.65;
+    }
+
+    /* SERVICES */
+    .services { background: #f5f8ff; }
+    .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+
+    .card {
+      background: white;
+      border: 1px solid #e8edf8;
+      border-radius: 12px;
+      width: 220px;
+      padding: 24px 20px;
+      text-align: left;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(11,51,100,0.12); }
+    .card-icon {
+      width: 46px; height: 46px; border-radius: 10px;
+      background: #e8f0ff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 14px;
+    }
+    .card h3 { font-size: 15px; font-weight: 600; color: #0a2a66; margin-bottom: 6px; }
+    .card-desc { font-size: 13px; color: #888; margin-bottom: 14px; line-height: 1.5; }
+    .card-price { font-size: 24px; font-weight: 700; color: #0b3364; margin-bottom: 14px; }
+    .card-price span { font-size: 13px; font-weight: 400; color: #aaa; }
+    .btn-book {
+      width: 100%; padding: 10px;
+      background: #0b3364; color: white;
+      border: none; border-radius: 7px;
+      font-size: 13px; font-weight: 500; cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-book:hover { background: #1a5ea8; }
+    .popular-badge {
+      position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+      background: #0b3364; color: white;
+      font-size: 11px; font-weight: 600;
+      padding: 3px 14px;
+      border-radius: 0 0 8px 8px;
+      white-space: nowrap;
+    }
+
+    /* HOW IT WORKS */
+    .steps-grid {
+      display: flex; gap: 0; justify-content: center;
+      flex-wrap: wrap; max-width: 720px; margin: 0 auto;
+    }
+    .step { flex: 1; min-width: 180px; padding: 30px 24px; text-align: center; position: relative; }
+    .step::after {
+      content: '→';
+      position: absolute; right: -10px; top: 50%; transform: translateY(-50%);
+      font-size: 20px; color: #ccd9f0;
+    }
+    .step:last-child::after { display: none; }
+    .step-num {
+      width: 54px; height: 54px; border-radius: 50%;
+      background: #0b3364; color: white;
+      font-size: 20px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 14px;
+    }
+    .step h3 { font-size: 16px; font-weight: 600; color: #0a2a66; margin-bottom: 6px; }
+    .step p { font-size: 14px; color: #888; line-height: 1.55; }
+
+    /* ABOUT */
+    .about-section { background: #f5f8ff; }
+    .about-grid {
+      display: flex; gap: 20px; justify-content: center;
+      flex-wrap: wrap; max-width: 820px; margin: 0 auto;
+    }
+    .about-card {
+      background: white; border: 1px solid #e8edf8;
+      border-radius: 12px; padding: 26px; flex: 1; min-width: 200px; text-align: left;
+    }
+    .about-card h4 { font-size: 15px; font-weight: 600; color: #0a2a66; margin-bottom: 8px; }
+    .about-card p { font-size: 13px; color: #666; line-height: 1.65; }
+
+    /* BOOKINGS */
+    .bookings-section { background: white; padding: 50px 20px; }
+    .bookings-inner { max-width: 820px; margin: 0 auto; }
+    .bookings-inner h2 { font-size: 24px; font-weight: 700; color: #0a2a66; margin-bottom: 22px; }
+    .booking-item {
+      background: #f5f9ff; border: 1px solid #d5e6ff;
+      border-radius: 10px; padding: 16px 20px;
+      margin-bottom: 12px;
+      display: flex; align-items: center; gap: 18px;
+    }
+    .booking-badge {
+      background: #0b3364; color: white;
+      border-radius: 8px; padding: 8px 16px;
+      font-size: 13px; font-weight: 600; white-space: nowrap;
+    }
+    .booking-details { flex: 1; font-size: 13px; color: #555; line-height: 1.65; }
+    .booking-status {
+      background: #e6f7ee; color: #1a7a42;
+      font-size: 11px; font-weight: 600;
+      padding: 4px 12px; border-radius: 12px;
+    }
+    .empty-state { text-align: center; padding: 50px; color: #aaa; font-size: 15px; }
+    .empty-icon { font-size: 40px; margin-bottom: 12px; }
+
+    /* CONTACT */
+    .contact-section { background: #0b3364; color: white; }
+    .contact-section h2 { color: white; }
+    .contact-grid {
+      display: flex; gap: 16px; justify-content: center;
+      flex-wrap: wrap; max-width: 620px; margin: 0 auto;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px; padding: 22px 32px; min-width: 170px;
+    }
+    .contact-card h4 {
+      font-size: 11px; opacity: 0.65; margin-bottom: 6px;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .contact-card p { font-size: 14px; font-weight: 500; }
+
+    footer {
+      background: #071e4a; color: rgba(255,255,255,0.55);
+      text-align: center; padding: 22px; font-size: 13px;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center; align-items: center;
+      z-index: 999;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: white; border-radius: 16px; padding: 34px;
+      width: 460px; max-width: 96vw;
+      max-height: 92vh; overflow-y: auto;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.22);
+    }
+    .modal-header {
+      display: flex; justify-content: space-between;
+      align-items: center; margin-bottom: 26px;
+    }
+    .modal-header h3 { font-size: 22px; font-weight: 700; color: #0a2a66; }
+    .modal-close {
+      background: #f0f0f0; border: none; border-radius: 50%;
+      width: 34px; height: 34px; cursor: pointer;
+      font-size: 18px; color: #555;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .form-row { margin-bottom: 14px; }
+    .form-row label {
+      display: block; font-size: 11px; font-weight: 700;
+      color: #0a2a66; margin-bottom: 5px;
+      letter-spacing: 0.8px; text-transform: uppercase;
+    }
+    .form-row input, .form-row select, .form-row textarea {
+      width: 100%; padding: 10px 12px;
+      border: 1.5px solid #dde3f0; border-radius: 8px;
+      font-size: 14px; color: #333; outline: none;
+      font-family: Arial, sans-serif;
+      transition: border-color 0.15s;
+    }
+    .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+      border-color: #0b3364;
+    }
+    .form-row textarea { resize: vertical; min-height: 72px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .modal-footer { display: flex; gap: 10px; margin-top: 22px; }
+    .btn-submit {
+      flex: 1; padding: 13px;
+      background: #0b3364; color: white;
+      border: none; border-radius: 8px;
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-submit:hover { background: #1a5ea8; }
+    .btn-cancel {
+      padding: 13px 22px; background: #f0f0f0;
+      color: #555; border: none; border-radius: 8px;
+      font-size: 14px; cursor: pointer;
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed; bottom: 28px; left: 50%;
+      transform: translateX(-50%);
+      background: #1a7a42; color: white;
+      padding: 13px 26px; border-radius: 10px;
+      font-size: 14px; font-weight: 500;
+      z-index: 9999; opacity: 0;
+      transition: opacity 0.3s; pointer-events: none;
+    }
+    .toast.show { opacity: 1; }
+
+    @media (max-width: 600px) {
+      .hero h2 { font-size: 30px; }
+      .stats-bar { flex-wrap: wrap; }
+      .stat { flex: 1 1 50%; border-right: none; border-bottom: 1px solid #f0f0f0; }
+      nav { display: none; }
+      .form-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">✦</div>
+      <h1>BrightShine</h1>
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
+      <a href="#contact">Contact</a>
+      <a href="#bookings">My bookings</a>
+    </nav>
+    <div id="authButtons" style="display:flex; gap:10px;">
+  <button class="btn-outline" onclick="openAuth('login')">Login</button>
+  <button class="btn-primary" onclick="openAuth('register')">Register</button>
+</div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-badge">✦ Trusted by 5,000+ homes in Mumbai</div>
+    <h2>Shining Homes,<br>Happy Hearts</h2>
+    <p>Professional cleaning services at your doorstep. Book in 60 seconds, we handle the rest.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="openModal()">Book Now</button>
+      <button class="btn-outline" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">View Services</button>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">5,000+</div><div class="stat-label">Happy customers</div></div>
+    <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Satisfaction rate</div></div>
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Cleanings/month</div></div>
+    <div class="stat"><div class="stat-num">3 hrs</div><div class="stat-label">Avg. response time</div></div>
+  </div>
+
+  <div id="services" class="section services">
+    <div class="section-label">What we offer</div>
+    <h2>Our Services</h2>
+    <p class="section-sub">From a single room to your full home — we've got you covered with trained staff and quality products.</p>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-icon">🛏️</div>
+        <h3>Room Cleaning</h3>
+        <p class="card-desc">Deep clean of any single room including dusting and mopping</p>
+        <div class="card-price">₹500 <span>/ room</span></div>
+        <button class="btn-book" onclick="openModal('Room Cleaning')">Book now</button>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🏠</div>
+        <h3>1BHK Cleaning</h3>
+        <p class="card-desc">Complete 1BHK — all rooms, kitchen, and bathroom</p>
+        <div class="card-price">₹2,000 <span>/ visit</span></div>
+        <button class="btn-book" onclick="openModal('1BHK Cleaning')">Book now</button>
+      </div>
+
+      <div class="card" style="border: 2px solid #1a5ea8;">
+        <div class="popular-badge">Most popular</div>
+        <div class="card-icon">🏡</div>
+        <h3>2BHK Cleaning</h3>
+        <p class="card-desc">Full 2BHK clean — ideal for families and working couples</p>
+        <div class="card-price">₹3,000 <span>/ visit</span></div>
+        <button class="btn-book" onclick="openModal('2BHK Cleaning')">Book now</button>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🍳</div>
+        <h3>Kitchen Cleaning</h3>
+        <p class="card-desc">Hob, counters, sink, tiles — full kitchen degreasing</p>
+        <div class="card-price">₹1,200 <span>/ visit</span></div>
+        <button class="btn-book" onclick="openModal('Kitchen Cleaning')">Book now</button>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🚿</div>
+        <h3>Bathroom Cleaning</h3>
+        <p class="card-desc">Scrubbing, descaling, sanitizing — squeaky clean</p>
+        <div class="card-price">₹600 <span>/ bathroom</span></div>
+        <button class="btn-book" onclick="openModal('Bathroom Cleaning')">Book now</button>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🛋️</div>
+        <h3>Sofa Cleaning</h3>
+        <p class="card-desc">Foam extraction and fabric treatment for all sofa types</p>
+        <div class="card-price">₹1,000 <span>/ sofa</span></div>
+        <button class="btn-book" onclick="openModal('Sofa Cleaning')">Book now</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="how" class="section">
+    <div class="section-label">Simple process</div>
+    <h2>How it works</h2>
+    <p class="section-sub">Get your home cleaned in three easy steps.</p>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Book</h3>
+        <p>Pick your service, date, and time slot online in seconds</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We clean</h3>
+        <p>Trained professionals arrive on time with all equipment</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Enjoy</h3>
+        <p>Come home to a spotless, fresh-smelling space</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="about" class="section about-section">
+    <div class="section-label">Who we are</div>
+    <h2>About BrightShine</h2>
+    <p class="section-sub">Mumbai's trusted cleaning partner since 2019.</p>
+    <div class="about-grid">
+      <div class="about-card">
+        <h4>✦ Trained staff</h4>
+        <p>All cleaners are background-verified and trained in our 2-week program before their first visit.</p>
+      </div>
+      <div class="about-card">
+        <h4>✦ Eco-friendly products</h4>
+        <p>We use non-toxic, biodegradable cleaning solutions — safe for kids, pets, and the planet.</p>
+      </div>
+      <div class="about-card">
+        <h4>✦ Fully insured</h4>
+        <p>Every booking is covered. If anything is damaged, we take full responsibility — no questions asked.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="bookings" class="bookings-section">
+    <div class="bookings-inner">
+      <h2>My bookings</h2>
+      <div id="bookingList">
+        <div class="empty-state">
+          <div class="empty-icon">📋</div>
+          <div>No bookings yet. Use "Book Now" to get started.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contact" class="section contact-section">
+    <div class="section-label" style="color: rgba(255,255,255,0.6);">Get in touch</div>
+    <h2>Contact us</h2>
+    <p style="color: rgba(255,255,255,0.7); margin-bottom: 32px; font-size: 15px;">Available Mon–Sat, 8am–8pm</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h4>Email</h4>
+        <p>support@brightshine.com</p>
+      </div>
+      <div class="contact-card">
+        <h4>Phone</h4>
+        <p>+91 98765 43210</p>
+      </div>
+      <div class="contact-card">
+        <h4>Location</h4>
+        <p>Mumbai, Maharashtra</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 BrightShine Company · Shining homes across Mumbai</p>
+  </footer>
+
+  <!-- BOOKING MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Book a service</h3>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="form-row">
+        <label>Full Name</label>
+        <input type="text" id="f-name" placeholder="e.g. Priya Sharma">
+      </div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Email</label>
+          <input type="email" id="f-email" placeholder="you@example.com">
+        </div>
+        <div class="form-row">
+          <label>Phone</label>
+          <input type="tel" id="f-phone" placeholder="+91 XXXXX XXXXX">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Service</label>
+        <select id="f-service">
+          <option value="">Select a service</option>
+          <option>Room Cleaning — ₹500</option>
+          <option>1BHK Cleaning — ₹2,000</option>
+          <option>2BHK Cleaning — ₹3,000</option>
+          <option>Kitchen Cleaning — ₹1,200</option>
+          <option>Bathroom Cleaning — ₹600</option>
+          <option>Sofa Cleaning — ₹1,000</option>
+        </select>
+      </div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label>Date</label>
+          <input type="date" id="f-date">
+        </div>
+        <div class="form-row">
+          <label>Time</label>
+          <input type="time" id="f-time">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Address</label>
+        <textarea id="f-address" placeholder="Flat/House no., street, area, Mumbai"></textarea>
+      </div>
+      <div class="form-row">
+        <label>Special Notes (optional)</label>
+        <textarea id="f-notes" placeholder="e.g. pets at home, focus on kitchen, entry code, etc."></textarea>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-submit" onclick="submitBooking()">Confirm booking</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <div class="modal-overlay" id="authModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="authTitle">Login</h3>
+      <button class="modal-close" onclick="closeAuth()">✕</button>
+    </div>
+
+    <div class="form-row" id="nameRow" style="display:none;">
+  <label>Name</label>
+  <input type="text" id="auth-name">
+</div>
+    <div class="form-row">
+      <label>Email</label>
+      <input type="email" id="auth-email">
+    </div>
+
+    <div class="form-row">
+      <label>Password</label>
+      <input type="password" id="auth-password">
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-submit" onclick="handleAuth()">Submit</button>
+    </div>
+  </div>
+</div>
+  <script>
+    const serviceMap = {
+      'Room Cleaning':     'Room Cleaning — ₹500',
+      '1BHK Cleaning':    '1BHK Cleaning — ₹2,000',
+      '2BHK Cleaning':    '2BHK Cleaning — ₹3,000',
+      'Kitchen Cleaning': 'Kitchen Cleaning — ₹1,200',
+      'Bathroom Cleaning':'Bathroom Cleaning — ₹600',
+      'Sofa Cleaning':    'Sofa Cleaning — ₹1,000',
+    };
+
+    function openModal(service) {
+      document.getElementById('modalOverlay').classList.add('open');
+      if (service && serviceMap[service]) {
+        document.getElementById('f-service').value = serviceMap[service];
+      }
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('f-date').min = today;
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('open');
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3200);
+    }
+
+    function submitBooking() {
+      const name    = document.getElementById('f-name').value.trim();
+      const email   = document.getElementById('f-email').value.trim();
+      const phone   = document.getElementById('f-phone').value.trim();
+      const service = document.getElementById('f-service').value;
+      const date    = document.getElementById('f-date').value;
+      const time    = document.getElementById('f-time').value;
+      const address = document.getElementById('f-address').value.trim();
+
+      if (!name || !email || !phone || !service || !date || !time || !address) {
+        showToast('⚠ Please fill in all required fields');
+        return;
+      }
+
+      const list = document.getElementById('bookingList');
+      list.querySelectorAll('.empty-state').forEach(e => e.remove());
+
+      const d = new Date(date);
+      const dateStr = d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+      const [h, m] = time.split(':');
+      const hr = parseInt(h);
+      const timeStr = (hr > 12 ? hr - 12 : hr || 12) + ':' + m + (hr >= 12 ? ' PM' : ' AM');
+
+      const item = document.createElement('div');
+      item.className = 'booking-item';
+      const svcShort = service.split(' —')[0];
+      item.innerHTML =
+        '<div class="booking-badge">' + svcShort + '</div>' +
+        '<div class="booking-details">' +
+          '<strong>' + name + '</strong> · ' + dateStr + ' at ' + timeStr + '<br>' +
+          phone + ' · ' + email + '<br>' +
+          address +
+        '</div>' +
+        '<div class="booking-status">Confirmed</div>';
+
+      list.appendChild(item);
+      localStorage.setItem("bookings", list.innerHTML);
+      showToast('✓ Booking confirmed for ' + name + '!');
+      closeModal();
+
+      ['f-name','f-email','f-phone','f-date','f-time','f-address','f-notes']
+        .forEach(id => { document.getElementById(id).value = ''; });
+      document.getElementById('f-service').value = '';
+
+      setTimeout(() => {
+        document.getElementById('bookings').scrollIntoView({ behavior: 'smooth' });
+      }, 600);
+    }
+
+    // Close modal on overlay click
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+  </script>
+  <script>
+let authMode = "login";
+window.onload = function () {
+  updateUserUI();
+
+  const saved = localStorage.getItem("bookings");
+  if (saved) {
+    document.getElementById("bookingList").innerHTML = saved;
+  }
+};
+function openAuth(mode) {
+  authMode = mode;
+  document.getElementById("authModal").classList.add("open");
+  document.getElementById("authTitle").innerText =
+    mode === "login" ? "Login" : "Register";
+
+  document.getElementById("nameRow").style.display =
+    mode === "register" ? "block" : "none";
+}
+
+function closeAuth() {
+  document.getElementById("authModal").classList.remove("open");
+}
+
+function handleAuth() {
+  const email = document.getElementById("auth-email").value;
+  const password = document.getElementById("auth-password").value;
+  const name = document.getElementById("auth-name").value;
+ 
+  if (!email ||!password || (authMode === "register" && !name)) { 
+    alert("Fill all fields");
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  if (authMode === "register") {
+    users.push({ email, password, name });
+    localStorage.setItem("users", JSON.stringify(users));
+
+    localStorage.setItem("loggedIn", "true");
+    localStorage.setItem("userName", name);
+
+    alert("Registered successfully!");
+  } else {
+    const user = users.find(
+      u => u.email === email && u.password === password
+    );
+
+    if (user) {
+      localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("userName", user.name);
+
+      alert("Login successful!");
+    } else {
+      alert("Invalid credentials");
+      return;
+    }
+  }
+
+  closeAuth();
+  updateUserUI();
+}
+function updateUserUI() {
+  const loggedIn = localStorage.getItem("loggedIn");
+  const name = localStorage.getItem("userName");
+
+  const authButtons = document.getElementById("authButtons");
+
+  if (loggedIn === "true") {
+    authButtons.innerHTML =
+      `Welcome back, <b>${name}</b> 👋 
+       <button onclick="logout()" class="btn-outline" style="margin-left:10px;">Logout</button>`;
+  } else {
+    authButtons.innerHTML =
+      `<button class="btn-outline" onclick="openAuth('login')">Login</button>
+       <button class="btn-primary" onclick="openAuth('register')">Register</button>`;
+  }
+}
+function logout() {
+ 
+  localStorage.removeItem("loggedIn");
+  localStorage.removeItem("userName");
+  localStorage.removeItem("bookings");
+  const bookingList = document.getElementById("bookingList");
+  bookingList.innerHTML = `
+  <div class="empty-state">
+    <div class="empty-icon">📋</div>
+    <div>No bookings yet. Use "Book Now" to get started.</div>
+  </div>
+`;
+
+  updateUserUI();
+}
+
+</script>
+</body>
+</html>
